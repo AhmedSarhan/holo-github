@@ -6,7 +6,7 @@ const SearchForm = () => {
   const { formValues, updateValue } = useSearchForm();
   const { queryType, searchQuery } = formValues;
   return (
-    <header>
+    <Header>
       <Hero>
         <Logo />
         <div>
@@ -28,12 +28,15 @@ const SearchForm = () => {
           <option value="repo">Repository</option>
         </Select>
       </Form>
-    </header>
+    </Header>
   );
 };
 
 export default SearchForm;
 
+const Header = styled.header`
+  width: fit-content;
+`;
 const Hero = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -62,6 +65,7 @@ const Form = styled.form`
   margin-block: 15px;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
 `;
 const inputStyles = `
   border: 1.5px solid #c4c4c4;
@@ -77,6 +81,7 @@ const inputStyles = `
 const Input = styled.input`
   margin-inline-end: 5px;
   padding: 10px;
+  width: 80%;
   ${inputStyles};
 `;
 const Select = styled.select`

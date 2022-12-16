@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { GoEye, GoStar, GoRepoForked } from "react-icons/go";
 import { Repo } from "../../resources/types";
 
 const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
@@ -15,11 +16,17 @@ const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
         />
         <h6>{repo.owner.login}</h6>
       </CardHeader>
-      <div>
-        <span>forks: {repo.forks} </span>
-        <span>stars: {repo.stargazers_count} </span>
-        <span>watchers: {repo.watchers} </span>
-      </div>
+      <StatsContainer>
+        <span>
+          <GoRepoForked /> {repo.forks}{" "}
+        </span>
+        <span>
+          <GoStar /> {repo.stargazers_count}{" "}
+        </span>
+        <span>
+          <GoEye /> {repo.watchers}{" "}
+        </span>
+      </StatsContainer>
     </Card>
   );
 };
@@ -42,10 +49,13 @@ const Card = styled.li`
   }
 `;
 
-const CardHeader = styled.div`
-  display: flex;
+const startCenterFlex = `
+   display: flex;
   justify-content: flex-start;
   align-items: center;
+`;
+const CardHeader = styled.div`
+  ${startCenterFlex};
   margin-block: 15px;
 
   img {
@@ -60,5 +70,25 @@ const CardHeader = styled.div`
     text-transform: capitalize;
     font-size: 24px;
     margin: 0;
+  }
+`;
+
+const StatsContainer = styled.div`
+  ${startCenterFlex};
+  flex-wrap: wrap;
+  span {
+    ${startCenterFlex};
+    svg {
+      margin-inline-end: 2px;
+    }
+    &:first-of-type {
+      margin-inline-end: 10px;
+    }
+    &:last-of-type {
+      margin-inline-start: 10px;
+    }
+    &:nth-of-type(2nd) {
+      margin-inline: 10px;
+    }
   }
 `;
