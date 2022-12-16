@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Repo, User } from "../resources/types";
 import { searchReposAction, searchUsersAction } from "./search-services";
 interface SearchState {
-  repos: any[];
-  users: any[];
+  repos: Repo[];
+  users: User[];
   totalRepos: number;
   totalUsers: number;
   error: any;
@@ -32,7 +33,7 @@ const searchSlice = createSlice({
       })
       .addCase(searchReposAction.fulfilled, (state, action) => {
         const { repos, total } = action.payload!;
-        state.repos.push(repos);
+        state.repos.push(...repos);
         state.totalRepos = total;
       })
       .addCase(searchReposAction.rejected, (state, action) => {
@@ -47,7 +48,7 @@ const searchSlice = createSlice({
       })
       .addCase(searchUsersAction.fulfilled, (state, action) => {
         const { users, total } = action.payload!;
-        state.users.push(users);
+        state.users.push(...users);
         state.totalUsers = total;
       })
       .addCase(searchUsersAction.rejected, (state, action) => {

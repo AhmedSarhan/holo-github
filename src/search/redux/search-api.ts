@@ -1,7 +1,7 @@
 import Axios from "../../app/api";
-import { searchRequestParams } from "./../resources/types";
+import { SearchRequestParams } from "./../resources/types";
 
-export const searchRepos = async ({ query, page = 1 }: searchRequestParams) => {
+export const searchRepos = async ({ query, page = 1 }: SearchRequestParams) => {
   return await Axios.get("/repositories", {
     params: {
       q: query,
@@ -12,7 +12,7 @@ export const searchRepos = async ({ query, page = 1 }: searchRequestParams) => {
   });
 };
 
-export const searchUsers = async ({ query, page = 1 }: searchRequestParams) => {
+export const searchUsers = async ({ query, page = 1 }: SearchRequestParams) => {
   return await Axios.get("/users", {
     params: {
       q: query,

@@ -4,12 +4,17 @@ import ErrorBoundary from "./app/components/error-boundary";
 import "./app.css";
 
 const SearchPage = React.lazy(() => import("./search"));
+const SearchProvider = React.lazy(() => import("./search/resources/context"));
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <SearchPage />,
+      element: (
+        <SearchProvider>
+          <SearchPage />
+        </SearchProvider>
+      ),
     },
   ]);
   return (

@@ -1,7 +1,7 @@
-import { useForm } from "./resources/hooks";
+import { useSearchForm } from "../resources/context";
 
 const SearchForm = () => {
-  const [formValues, updateValue] = useForm();
+  const { formValues, updateValue } = useSearchForm();
   const { queryType, searchQuery } = formValues;
   return (
     <div>
