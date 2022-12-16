@@ -5,7 +5,7 @@ const SearchForm = () => {
   const { queryType, searchQuery } = formValues;
   return (
     <div>
-      <form role="search">
+      <form role="search" onSubmit={(e) => e.preventDefault()}>
         <input
           aria-label="Search"
           placeholder="Search"
