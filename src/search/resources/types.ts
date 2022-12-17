@@ -9,7 +9,7 @@ export type Repo = {
   watchers: number;
   stargazers_count: number;
   created_at: string;
-  clone_url: string;
+  html_url: string;
   description: string;
   full_name: string;
   name: string;

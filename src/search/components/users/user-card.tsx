@@ -1,15 +1,19 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { User } from "../../resources/types";
+import {
+  AvatarContainer,
+  CardContainer,
+} from "../../../app/components/shared-styled";
 
 const UserCard: FC<{ user: User }> = ({ user }) => {
   return (
     <Card>
-      <a href={user.html_url} target="_blank" rel="noreferrer">
+      <AvatarContainer href={user.html_url} target="_blank" rel="noreferrer">
         <img src={user.avatar_url} alt={user.login} width="75" height="75" />
         <h6>{user.login}</h6>
-      </a>
-      <p>{user.type}</p>
+      </AvatarContainer>
+      <UserType>{user.type}</UserType>
     </Card>
   );
 };
@@ -17,5 +21,9 @@ const UserCard: FC<{ user: User }> = ({ user }) => {
 export default UserCard;
 
 const Card = styled.li`
-  box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.4);
+  ${CardContainer}
+`;
+const UserType = styled.p`
+  color: #ccc;
+  font-size: 12px;
 `;
