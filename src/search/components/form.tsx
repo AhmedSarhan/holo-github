@@ -36,6 +36,7 @@ export default SearchForm;
 
 const Header = styled.header`
   width: fit-content;
+  margin-inline: 15px;
 `;
 const Hero = styled.div`
   display: flex;
