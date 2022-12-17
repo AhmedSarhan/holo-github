@@ -7,7 +7,7 @@ export const formatRepo = (repo: any): Repo => {
     watchers: repo.watchers,
     stargazers_count: repo.stargazers_count,
     created_at: repo.created_at,
-    clone_url: repo.clone_url,
+    html_url: repo.html_url,
     description: repo.description,
     full_name: repo.full_name,
     name: repo.name,
@@ -24,4 +24,18 @@ export const formatUser = (user: any): User => {
     html_url: user.html_url,
     type: user.type,
   };
+};
+
+export const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  return date
+    .toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    })
+    .replaceAll(",", "");
 };
