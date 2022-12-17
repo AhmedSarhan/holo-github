@@ -4,7 +4,7 @@ import { searchReposAction, searchUsersAction } from "../redux/search-services";
 import { clearSearch } from "../redux/search-slice";
 const initialValues = {
   searchQuery: "",
-  queryType: "user" as "user" | "repo",
+  queryType: "repo" as "user" | "repo",
 };
 export type FromValues = typeof initialValues;
 
