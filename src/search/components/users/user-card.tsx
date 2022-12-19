@@ -6,9 +6,12 @@ import {
   CardContainer,
 } from "../../../app/components/shared-styled";
 
-const UserCard: FC<{ user: User }> = ({ user }) => {
+const UserCard: FC<{
+  user: User;
+  lastElRef?: (node: HTMLLIElement) => void;
+}> = ({ user, lastElRef }) => {
   return (
-    <Card>
+    <Card ref={lastElRef ?? null}>
       <AvatarContainer href={user.html_url} target="_blank" rel="noreferrer">
         <img src={user.avatar_url} alt={user.login} width="75" height="75" />
         <h6>{user.login}</h6>

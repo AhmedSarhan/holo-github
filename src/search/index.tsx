@@ -15,9 +15,9 @@ const SearchPage = () => {
   return (
     <Container>
       <SearchForm />
-      {queryType === "repo" ? <ReposListing /> : <UsersListing />}
+      {queryType === "repos" ? <ReposListing /> : <UsersListing />}
       {status === "loading" ? (
-        <ListingSkeleton gridCount={queryType === "repo" ? 3 : 5} />
+        <ListingSkeleton gridCount={queryType === "repos" ? 3 : 5} />
       ) : null}
     </Container>
   );

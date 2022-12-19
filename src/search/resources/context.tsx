@@ -6,13 +6,14 @@ type SearchContextValues = {
   updateValue: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
+  lastElRef: (node: HTMLLIElement) => void;
 };
 const SearchContext = createContext<SearchContextValues | null>(null);
 
 const SearchProvider = ({ children }: { children: React.ReactNode }) => {
-  const [formValues, updateValue] = useForm();
+  const [formValues, updateValue, lastElRef] = useForm();
   return (
-    <SearchContext.Provider value={{ formValues, updateValue }}>
+    <SearchContext.Provider value={{ formValues, updateValue, lastElRef }}>
       {children}
     </SearchContext.Provider>
   );

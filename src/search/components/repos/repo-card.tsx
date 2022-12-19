@@ -9,9 +9,12 @@ import {
 import { Repo } from "../../resources/types";
 import { formatDate } from "../../resources/utils";
 
-const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
+const RepoCard: FC<{
+  repo: Repo;
+  lastElRef?: (node: HTMLLIElement) => void;
+}> = ({ repo, lastElRef }) => {
   return (
-    <Card>
+    <Card ref={lastElRef ?? null}>
       <a href={repo.html_url} target="_blank" rel="noreferrer">
         <h2>{repo.full_name}</h2>
       </a>

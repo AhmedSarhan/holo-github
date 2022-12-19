@@ -3,13 +3,21 @@ import { List } from "../../../app/components/shared-styled";
 import { useAppSelector } from "../../../app/hooks/redux-hooks";
 import UserCard from "./user-card";
 import styled from "styled-components";
+import { useSearchForm } from "../../resources/context";
 
 const UsersListing = () => {
   const users = useAppSelector((state) => state.search.users);
+  const { lastElRef } = useSearchForm();
+
   return (
     <UserList>
       {users.length > 0 &&
-        users.map((user) => <UserCard key={user.id} user={user} />)}
+        users.map((user, index) => {
+          if (index + 1 === users.length) {
+            return <UserCard lastElRef={lastElRef} key={user.id} user={user} />;
+          }
+          return <UserCard key={user.id} user={user} />;
+        })}
     </UserList>
   );
 };
