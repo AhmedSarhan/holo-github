@@ -34,6 +34,7 @@ const searchSlice = createSlice({
         state.error = null;
       })
       .addCase(searchReposAction.fulfilled, (state, action) => {
+        console.log("action", action);
         const { repos, total } = action.payload!;
         state.repos.push(...repos);
         state.totalRepos = total;

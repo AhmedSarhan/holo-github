@@ -10,6 +10,7 @@ export const searchReposAction = createAsyncThunk(
   async (params: SearchRequestParams, thunkApi) => {
     try {
       const response = await searchRepos(params);
+      console.log("Response", response);
       const repos = response.data.items.map((repo: unknown) => {
         return formatRepo(repo);
       });
@@ -18,8 +19,10 @@ export const searchReposAction = createAsyncThunk(
         repos: repos,
       };
     } catch (err) {
+      console.log("Err", err);
       const error = (err as unknown) as AxiosError;
-      thunkApi.rejectWithValue(error.message);
+
+      return thunkApi.rejectWithValue(error.message);
     }
   },
   {
@@ -49,7 +52,7 @@ export const searchUsersAction = createAsyncThunk(
       };
     } catch (err) {
       const error = (err as unknown) as AxiosError;
-      thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   },
   {

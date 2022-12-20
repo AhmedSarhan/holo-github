@@ -30,36 +30,47 @@ export function useForm(): [
   const [values, setValues] = useReducer(formReducer, initialValues);
   const { queryType, searchQuery } = values;
   const firstRender = useRef(true);
+
   const hasMore = useAppSelector(
     (state) =>
       state.search[values.queryType].length <
       state.search[values.queryType === "repos" ? "totalRepos" : "totalUsers"]
   );
+
   const { page, lastElRef, resetPage } = useInfiniteScroll(hasMore);
+
   const { fetchData, cancelThunk } = useFetchData({
     query: searchQuery,
     queryType,
   });
+
   const debouncedValue = useDebounce(searchQuery);
+
+  // clearing old data and fetching the firstpage on queryTypeChange
   useEffect(() => {
-    if (firstRender.current) {
+    if (firstRender.current || !debouncedValue) {
       return;
     }
+    console.log("Will fetch", debouncedValue);
     dispatch(clearSearch());
     resetPage();
     fetchData(1);
 
     return () => cancelThunk();
   }, [debouncedValue, dispatch, fetchData, resetPage, queryType, cancelThunk]);
+
+  // fetching on page change
   useEffect(() => {
     firstRender.current = false;
     if (page === 1) return;
+    console.log("Will fetch 1");
 
     fetchData(page);
 
     return () => cancelThunk();
   }, [dispatch, fetchData, cancelThunk, page]);
 
+  // updating the value of the formfield in the reducer
   const updateValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       setValues({ [e.target.name]: e.target.value });
