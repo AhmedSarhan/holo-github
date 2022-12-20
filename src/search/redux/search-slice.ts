@@ -37,6 +37,7 @@ const searchSlice = createSlice({
         const { repos, total } = action.payload!;
         state.repos.push(...repos);
         state.totalRepos = total;
+        state.status = "idle";
       })
       .addCase(searchReposAction.rejected, (state, action) => {
         state.status = "failed";
@@ -52,6 +53,7 @@ const searchSlice = createSlice({
         const { users, total } = action.payload!;
         state.users.push(...users);
         state.totalUsers = total;
+        state.status = "idle";
       })
       .addCase(searchUsersAction.rejected, (state, action) => {
         state.status = "failed";

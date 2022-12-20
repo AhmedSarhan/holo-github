@@ -24,3 +24,5 @@ export type User = {
   html_url: string;
   type: string;
 };
+
+export type QueryType = "users" | "repos";

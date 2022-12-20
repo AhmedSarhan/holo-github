@@ -3,6 +3,7 @@ import { AxiosError } from "axios";
 import { SearchRequestParams } from "../resources/types";
 import { formatRepo, formatUser } from "../resources/utils";
 import { searchRepos, searchUsers } from "./search-api";
+import { RootState } from "../../app/store";
 
 export const searchReposAction = createAsyncThunk(
   "search/search-repos",
@@ -20,6 +21,17 @@ export const searchReposAction = createAsyncThunk(
       const error = (err as unknown) as AxiosError;
       thunkApi.rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (params: SearchRequestParams, { getState, extra }) => {
+      const {
+        search: { status },
+      } = getState() as RootState;
+      if (status === "loading") {
+        // Already fetched or in progress, don't need to re-fetch
+        return false;
+      }
+    },
   }
 );
 
@@ -39,5 +51,16 @@ export const searchUsersAction = createAsyncThunk(
       const error = (err as unknown) as AxiosError;
       thunkApi.rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (params: SearchRequestParams, { getState, extra }) => {
+      const {
+        search: { status },
+      } = getState() as RootState;
+      if (status === "loading") {
+        // Already fetched or in progress, don't need to re-fetch
+        return false;
+      }
+    },
   }
 );

@@ -24,8 +24,8 @@ const SearchForm = () => {
           onChange={updateValue}
         />
         <Select name="queryType" value={queryType} onChange={updateValue}>
-          <option value="user">User</option>
-          <option value="repo">Repository</option>
+          <option value="users">User</option>
+          <option value="repos">Repository</option>
         </Select>
       </Form>
     </Header>
@@ -36,6 +36,7 @@ export default SearchForm;
 
 const Header = styled.header`
   width: fit-content;
+  margin-inline: 15px;
 `;
 const Hero = styled.div`
   display: flex;
