@@ -44,7 +44,7 @@ I have created `useFetchData` hook to keep the `useForm` a bit clean as it's con
 
 ### Querying the data from the API && Listing the Search Results
 
-- I created an Axios instance with the baseUrl coming from the .env.local file which wasn't pushed to this codebase -> check the [Devops and Deployment section] (##devops-and-deployment)
+- I created an Axios instance with the baseUrl coming from the .env.local file which wasn't pushed to this codebase -> check the [Devops and Deployment section] (#devops-and-deployment)
 
 - All the following assumes the user have typed at least 3 characters in the `searchInput`;
 
@@ -63,7 +63,7 @@ I have created `useFetchData` hook to keep the `useForm` a bit clean as it's con
 
 - I have stored the `REACT_APP_API_URL` and the `FirebaseConfig` values in the Github repo secrets which seem very secure and easily accessible by the github actions [see here] (https://github.com/AhmedSarhan/holo-github/blob/main/.github/workflows/firebase-hosting-merge.yml)
 
-- I have created two CI/CD one for what should be the projects production connected to the `main` branch and deploys on each new commit to the `main` branch with the caveat that the user cannot commit to the `main` branch directly and have only one path which is `pull-request`.
+- I have created two CI/CD one for what should be the projects production connected to the `main` branch and deploys on each new commit to the `main` branch with the caveat that the "No one" can commit to the `main` branch directly and the only path is `pull-request`.
 
 - The `pull-request` approach mentioned above would be vey beneficial in a team setup as you can prevent merging without a PR review and approval, this means you usually have a code-review, keeping the code quality at a good level "very opinionated at my side 😁".
 
