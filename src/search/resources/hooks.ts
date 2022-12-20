@@ -35,7 +35,6 @@ export function useForm(): [
       state.search[values.queryType].length <
       state.search[values.queryType === "repos" ? "totalRepos" : "totalUsers"]
   );
-  console.log("HasMore", hasMore);
   const { page, lastElRef, resetPage } = useInfiniteScroll(hasMore);
   const { fetchData, cancelThunk } = useFetchData({
     query: searchQuery,
@@ -47,7 +46,6 @@ export function useForm(): [
       return;
     }
     dispatch(clearSearch());
-    console.log("will fetch 0");
     resetPage();
     fetchData(1);
 
@@ -55,9 +53,7 @@ export function useForm(): [
   }, [debouncedValue, dispatch, fetchData, resetPage, queryType, cancelThunk]);
   useEffect(() => {
     firstRender.current = false;
-    console.log("will fetch");
     if (page === 1) return;
-    console.log("will fetch 2");
 
     fetchData(page);
 
@@ -98,7 +94,6 @@ function useFetchData({
     [dispatch, query, queryType]
   );
   const cancelThunk = useCallback(() => {
-    console.log("promise", promise.current);
     promise.current?.abort();
   }, []);
   return { fetchData, cancelThunk };
