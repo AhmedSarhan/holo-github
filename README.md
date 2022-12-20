@@ -44,7 +44,7 @@ I have created `useFetchData` hook to keep the `useForm` a bit clean as it's con
 
 ### Querying the data from the API && Listing the Search Results
 
-- I created an Axios instance with the baseUrl coming from the .env.local file which wasn't pushed to this codebase -> check the [Devops and Deployment section] (#devops-and-deployment)
+- I created an Axios instance with the baseUrl coming from the .env.local file which wasn't pushed to this codebase -> check the [Devops and Deployment section] (https://github.com/AhmedSarhan/holo-github#devops-and-deployment)
 
 - All the following assumes the user have typed at least 3 characters in the `searchInput`;
 
