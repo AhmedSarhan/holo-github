@@ -3,14 +3,12 @@ import { useAppSelector } from "./redux-hooks";
 
 export function useInfiniteScroll(hasMore?: boolean) {
   const [page, setPage] = useState(1);
-  const isLoading = useAppSelector(
-    (state) => state?.search.status === "loading"
-  );
+  const status = useAppSelector((state) => state?.search.status);
 
   const observer = useRef<any>();
   const lastElRef = useCallback(
     (node: HTMLLIElement) => {
-      if (isLoading || !hasMore) return;
+      if (status === "failed" || status === "loading" || !hasMore) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
@@ -19,7 +17,7 @@ export function useInfiniteScroll(hasMore?: boolean) {
       });
       if (node) observer.current.observe(node);
     },
-    [hasMore, isLoading]
+    [hasMore, status]
   );
   const resetPage = useCallback(() => setPage(1), []);
   return { page, lastElRef, resetPage };
