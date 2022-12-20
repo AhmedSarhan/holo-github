@@ -26,3 +26,12 @@ export type User = {
 };
 
 export type QueryType = "users" | "repos";
+
+export type SearchReposResponse = {
+  items: Repo[];
+  total_count: number;
+};
+export type SearchUserResponse = {
+  items: User[];
+  total_count: number;
+};
