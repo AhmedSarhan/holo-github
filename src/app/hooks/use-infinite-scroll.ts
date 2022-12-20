@@ -10,7 +10,6 @@ export function useInfiniteScroll(hasMore?: boolean) {
   const observer = useRef<any>();
   const lastElRef = useCallback(
     (node: HTMLLIElement) => {
-      console.log("looking forward to it");
       if (isLoading || !hasMore) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
